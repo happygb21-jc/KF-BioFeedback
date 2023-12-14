@@ -1,4 +1,5 @@
 ﻿using Kingfar.BioFeedback.Patient.Client.Common;
+using Kingfar.BioFeedback.Patient.Client.ViewModels;
 using Microsoft.Extensions.Configuration;
 using System.Configuration;
 using System.IO;
@@ -90,14 +91,17 @@ namespace Kingfar.BioFeedback.Patient.Client
 
             containerRegistry.AddShared();
 
+            containerRegistry.RegisterForNavigation<LoginView, LoginViewModel>(AppViews.Login);
+            containerRegistry.RegisterForNavigation<MainView, MainViewModel>(AppViews.Main);
+
             #region services
 
             containerRegistry.RegisterSingleton<IHostDialogService, DialogHostService>();
             containerRegistry.RegisterSingleton<AppStartService>();
 
             containerRegistry.RegisterSingleton<ISnackbarService, SnackbarService>();
-            //containerRegistry.RegisterSingleton<IPageService, PageService>();
-            //containerRegistry.RegisterScoped<INavigationWindow, MainWindow>();
+            containerRegistry.RegisterSingleton<IPageService, PageService>();
+            containerRegistry.RegisterScoped<INavigationWindow, MainView>();
             containerRegistry.RegisterSingleton<INavigationService, NavigationService>();
             // Theme manipulation
             containerRegistry.RegisterSingleton<IThemeService, ThemeService>();
@@ -107,8 +111,6 @@ namespace Kingfar.BioFeedback.Patient.Client
             containerRegistry.RegisterSingleton<IContentDialogService, ContentDialogService>();
 
             #endregion services
-
-            containerRegistry.RegisterForNavigation<LoginView, LoginViewModel>(AppViews.Login);
         }
 
         private void OnDispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)

@@ -36,7 +36,7 @@
                 EnableDebugMessages="True"
                 FrameMargin="0"
                 IsBackButtonVisible="Visible"
-                IsPaneToggleVisible="True"
+                IsPaneToggleVisible="False"
                 FooterMenuItemsSource="{Binding NavigationFooter, Mode=OneWay}"
                 MenuItems="{Binding NavigationItems, Mode=OneWay}"
                 OpenPaneLength="220"

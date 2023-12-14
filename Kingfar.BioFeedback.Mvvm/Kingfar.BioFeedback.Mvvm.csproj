@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\AddSchemeDialogViewModel - 复制.cs" />
     <Compile Remove="ViewModelBase\MainWindowViewModel.cs" />
   </ItemGroup>
 
