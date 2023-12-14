@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     xmlns:prism="http://prismlibrary.com/"
-    xmlns:controls="clr-namespace:Kingfar.BioFeedback.WPFUI.Controls"
+    xmlns:controls="clr-namespace:Kingfar.BioFeedback.WPFCommon.Controls;assembly=Kingfar.BioFeedback.WPFCommon"
     prism:ViewModelLocator.AutoWireViewModel="True"
     d:DesignHeight="640"
     d:DesignWidth="1280"

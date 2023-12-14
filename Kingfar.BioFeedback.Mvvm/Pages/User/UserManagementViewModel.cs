@@ -1,10 +1,4 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using Kingfar.BioFeedback.Mvvm.Controls;
-using Kingfar.BioFeedback.Services;
-using System;
-using System.Threading.Tasks;
-
-namespace Kingfar.BioFeedback.Mvvm.User
+﻿namespace Kingfar.BioFeedback.Mvvm.User
 {
     public partial class UserManagementViewModel : PaginationViewModelBase<AppUserDto>
     {

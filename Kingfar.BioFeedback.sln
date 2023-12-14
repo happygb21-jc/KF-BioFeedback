@@ -41,11 +41,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kingfar.BioFeedback.WebHost
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{2042BF9B-55A8-458B-A325-77E45C5A8DBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kingfar.BioFeedback.Patient.Client", "Kingfar.BioFeedback.Patient.Client\Kingfar.BioFeedback.Patient.Client.csproj", "{02603D22-D64B-47D5-AD53-36E687EF2BDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kingfar.BioFeedback.Patient.Client", "Kingfar.BioFeedback.Patient.Client\Kingfar.BioFeedback.Patient.Client.csproj", "{02603D22-D64B-47D5-AD53-36E687EF2BDB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{38601556-E08D-4B4C-A3FE-B3CC09B34EBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kingfar.BioFeedback.Prism.Common", "Kingfar.BioFeedback.Prism.Common\Kingfar.BioFeedback.Prism.Common.csproj", "{704AF0E7-7885-4AC7-AAF0-9DF5845D2603}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kingfar.BioFeedback.WPFCommon", "Kingfar.BioFeedback.WPFCommon\Kingfar.BioFeedback.WPFCommon.csproj", "{D3820E14-F060-49B5-A211-95F8A4BCBB30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -149,14 +149,14 @@ Global
 		{02603D22-D64B-47D5-AD53-36E687EF2BDB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{02603D22-D64B-47D5-AD53-36E687EF2BDB}.Release|x64.ActiveCfg = Release|Any CPU
 		{02603D22-D64B-47D5-AD53-36E687EF2BDB}.Release|x64.Build.0 = Release|Any CPU
-		{704AF0E7-7885-4AC7-AAF0-9DF5845D2603}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{704AF0E7-7885-4AC7-AAF0-9DF5845D2603}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{704AF0E7-7885-4AC7-AAF0-9DF5845D2603}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{704AF0E7-7885-4AC7-AAF0-9DF5845D2603}.Debug|x64.Build.0 = Debug|Any CPU
-		{704AF0E7-7885-4AC7-AAF0-9DF5845D2603}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{704AF0E7-7885-4AC7-AAF0-9DF5845D2603}.Release|Any CPU.Build.0 = Release|Any CPU
-		{704AF0E7-7885-4AC7-AAF0-9DF5845D2603}.Release|x64.ActiveCfg = Release|Any CPU
-		{704AF0E7-7885-4AC7-AAF0-9DF5845D2603}.Release|x64.Build.0 = Release|Any CPU
+		{D3820E14-F060-49B5-A211-95F8A4BCBB30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3820E14-F060-49B5-A211-95F8A4BCBB30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3820E14-F060-49B5-A211-95F8A4BCBB30}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D3820E14-F060-49B5-A211-95F8A4BCBB30}.Debug|x64.Build.0 = Debug|Any CPU
+		{D3820E14-F060-49B5-A211-95F8A4BCBB30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3820E14-F060-49B5-A211-95F8A4BCBB30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3820E14-F060-49B5-A211-95F8A4BCBB30}.Release|x64.ActiveCfg = Release|Any CPU
+		{D3820E14-F060-49B5-A211-95F8A4BCBB30}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -173,7 +173,7 @@ Global
 		{622D1315-DCB0-4A2C-8241-35872969CBBD} = {4849ACC9-07C1-4E33-98CF-23CFC8699492}
 		{E93C596B-F12B-4239-B201-295523087D95} = {8719A976-F6D6-4BD1-B0F4-1066BAB2108C}
 		{02603D22-D64B-47D5-AD53-36E687EF2BDB} = {2042BF9B-55A8-458B-A325-77E45C5A8DBA}
-		{704AF0E7-7885-4AC7-AAF0-9DF5845D2603} = {38601556-E08D-4B4C-A3FE-B3CC09B34EBC}
+		{D3820E14-F060-49B5-A211-95F8A4BCBB30} = {38601556-E08D-4B4C-A3FE-B3CC09B34EBC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B6354907-3362-42B8-A55F-78CDD2C50FCC}

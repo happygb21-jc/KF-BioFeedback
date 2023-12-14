@@ -1,9 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Prism.Commands;
-using System;
-using Wpf.Ui;
-
-namespace Kingfar.BioFeedback.Patient.Client
+﻿namespace Kingfar.BioFeedback.Patient.Client
 {
     public partial class LoginViewModel : DialogViewModel
     {

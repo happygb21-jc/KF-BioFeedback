@@ -58,7 +58,7 @@ public partial class MainViewModel : ViewModelBase
                 Content = "数据管理",
                 Icon = new SymbolIcon { Symbol = SymbolRegular.Home20 },
                 TargetPageTag = AppViews.Dashboard,
-                TargetPageType=GetViewType(AppViews.Dashboard),
+                TargetPageType=GetRegisteredType(AppViews.Dashboard),
             },
             new NavigationViewItemSeparator(),
             new NavigationViewItem()
@@ -66,7 +66,7 @@ public partial class MainViewModel : ViewModelBase
                 Content = "方案管理",
                 Icon = new SymbolIcon { Symbol = SymbolRegular.Group20 },
                 TargetPageTag = AppViews.SchemeSet,
-                TargetPageType=GetViewType(AppViews.SchemeSet)
+                TargetPageType=GetRegisteredType(AppViews.SchemeSet)
             },
             new NavigationViewItemSeparator(),
             new NavigationViewItem()
@@ -74,7 +74,7 @@ public partial class MainViewModel : ViewModelBase
                 Content = "模板管理",
                 Icon = new SymbolIcon { Symbol = SymbolRegular.BookTemplate20 },
                 TargetPageTag = AppViews.SchemeSetTemplate,
-                TargetPageType=GetViewType(AppViews.SchemeSetTemplate)
+                TargetPageType=GetRegisteredType(AppViews.SchemeSetTemplate)
             },
             // new NavigationViewItem()
             //{
@@ -103,7 +103,7 @@ public partial class MainViewModel : ViewModelBase
                 Content = "患者管理",
                 Icon = new SymbolIcon { Symbol = SymbolRegular.BuildingPeople20 },
                 TargetPageTag = AppViews.UserManagement,
-                TargetPageType=GetViewType(AppViews.UserManagement)
+                TargetPageType=GetRegisteredType(AppViews.UserManagement)
             },
         };
         //#if DEBUG
@@ -128,7 +128,7 @@ public partial class MainViewModel : ViewModelBase
                     Content = "组织管理",
                     Icon = new SymbolIcon { Symbol = SymbolRegular.Organization20 },
                     TargetPageTag = AppViews.Organization,
-                    TargetPageType = GetViewType(AppViews.Organization)
+                    TargetPageType = GetRegisteredType(AppViews.Organization)
                 }
             );
         }
@@ -141,7 +141,7 @@ public partial class MainViewModel : ViewModelBase
                 Content = "回收站",
                 Icon = new SymbolIcon { Symbol = SymbolRegular.Recycle20 },
                 TargetPageTag = AppViews.RecycleBin,
-                TargetPageType = GetViewType(AppViews.RecycleBin)
+                TargetPageType = GetRegisteredType(AppViews.RecycleBin)
             }
         );
         NavigationItems.Add(
@@ -155,7 +155,7 @@ public partial class MainViewModel : ViewModelBase
                 Content = "系统管理",
                 Icon = new SymbolIcon { Symbol = SymbolRegular.Settings24 },
                 TargetPageTag = AppViews.Setting,
-                TargetPageType=GetViewType(AppViews.Setting)
+                TargetPageType=GetRegisteredType(AppViews.Setting)
             }
         };
 

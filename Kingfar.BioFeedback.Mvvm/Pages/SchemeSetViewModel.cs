@@ -110,7 +110,7 @@ public partial class SchemeSetViewModel : PaginationViewModelBase<Services.Schem
         var nav = NavigationService.GetNavigationControl();
         if (nav != null)
         {
-            nav.NavigateWithHierarchy(GetViewType(AppViews.SchemeSetDetail)!, new SchemeSetDetailViewModel(dto.Id, _schemeSetService));
+            nav.NavigateWithHierarchy(GetRegisteredType(AppViews.SchemeSetDetail)!, new SchemeSetDetailViewModel(dto.Id, _schemeSetService));
         }
     }
 

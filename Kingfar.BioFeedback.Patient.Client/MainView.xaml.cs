@@ -1,96 +1,37 @@
-﻿using Kingfar.BioFeedback.WebHost;
-using NewLife;
-using System.Net;
-using System.Net.NetworkInformation;
-using System.Windows.Controls;
+﻿using Kingfar.BioFeedback.Patient.Client.Common;
+using Wpf.Ui;
 using Appearance = Wpf.Ui.Appearance;
 
-namespace Kingfar.BioFeedback.WPFUI
+namespace Kingfar.BioFeedback.Patient.Client
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MainView.xaml
     /// </summary>
     public partial class MainView : FluentWindow, INavigationWindow
+
     {
         private bool _isUserClosedPane;
 
         private bool _isPaneOpenedOrClosedFromCode;
         private readonly AppStartService _appStartService;
         public bool IsOpenPane { get; set; } = true;
-        private readonly IWebApiServer _webApiServer;
 
-        public MainView(IPageService pageService,
+        public MainView(
+            IPageService pageService,
             INavigationService navigationService,
             ISnackbarService snackbarService,
             AppStartService appStartService,
-            IContentDialogService contentDialogService,
-            IWebApiServer webApiServer)
+            IContentDialogService contentDialogService)
         {
             Appearance.SystemThemeWatcher.Watch(this);
             _appStartService = appStartService;
-            _webApiServer = webApiServer;
             InitializeComponent();
 
             SetPageService(pageService);
             snackbarService.SetSnackbarPresenter(RootSnackbarPresenter);
             navigationService.SetNavigationControl(RootNavigation);
             contentDialogService.SetContentPresenter(RootContentDialog);
-            var ipAddress = GetLocalIPAddress();
-            var test = GetLocalIPAddresses();
-            string baseAddress = $"http://{ipAddress}:9527/";
-
-            _webApiServer.Start(baseAddress, ContainerLocator.Container);
-
-            #region ChangePassword
-
-            if (this.DataContext != null && this.DataContext is MainViewModel vm)
-            {
-                var changePwdDialog = FindResource("ChangePasswordDialog");
-                if (changePwdDialog is StackPanel changePwdPanel)
-                {
-                    changePwdPanel.DataContext = this.DataContext;
-                    vm.ChangePwdDialog = changePwdPanel;
-                }
-            }
-
-            #endregion ChangePassword
         }
-
-        public IPAddress? GetLocalIPAddresses()
-        {
-            var addresses = NetHelper.MyIP();
-            return addresses;
-        }
-
-        private string GetLocalIPAddress()
-        {
-            var networkInterfaces = System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces();
-
-            foreach (var networkInterface in networkInterfaces)
-            {
-                if (networkInterface.OperationalStatus != System.Net.NetworkInformation.OperationalStatus.Up || networkInterface.NetworkInterfaceType == NetworkInterfaceType.Loopback)
-                    continue;
-
-                if (networkInterface.NetworkInterfaceType == NetworkInterfaceType.Ethernet)
-                {
-                    IPInterfaceProperties ip = networkInterface.GetIPProperties();
-                }
-                var ipProperties = networkInterface.GetIPProperties();
-                var unicastAddresses = ipProperties.UnicastAddresses;
-
-                foreach (var unicastAddress in unicastAddresses)
-                {
-                    if (unicastAddress.Address.AddressFamily != System.Net.Sockets.AddressFamily.InterNetwork || System.Net.IPAddress.IsLoopback(unicastAddress.Address))
-                        continue;
-
-                    return unicastAddress.Address.ToString();
-                }
-            }
-
-            return string.Empty;
-        }
-
-        #region INavigationWindow
 
         public void CloseWindow() => Close();
 
@@ -106,8 +47,6 @@ namespace Kingfar.BioFeedback.WPFUI
         }
 
         public void ShowWindow() => Show();
-
-        #endregion INavigationWindow
 
         #region ViewEvent
 
@@ -156,19 +95,17 @@ namespace Kingfar.BioFeedback.WPFUI
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            _webApiServer.Stop();
             RootNotifyIcon.Dispose();
             Environment.Exit(0);
         }
 
         private void RootNavigation_Loaded(object sender, RoutedEventArgs e)
         {
-            RootNavigation.Navigate(AppViews.Dashboard);
+            //RootNavigation.Navigate(AppViews.Main);
         }
 
         private void Logout_MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            _webApiServer.Stop();
             Application.Current.MainWindow.Hide();
             Application.Current.MainWindow = ContainerLocator.Container.Resolve<NullView>();
             _appStartService.CreateShell();
@@ -177,14 +114,12 @@ namespace Kingfar.BioFeedback.WPFUI
 
         protected override void OnClosed(EventArgs e)
         {
-            _webApiServer.Stop();
             RootNotifyIcon.Dispose();
             Environment.Exit(0);
         }
 
         private void TitleBar_CloseClicked(TitleBar sender, RoutedEventArgs args)
         {
-            _webApiServer.Stop();
             RootNotifyIcon.Dispose();
             Environment.Exit(0);
         }

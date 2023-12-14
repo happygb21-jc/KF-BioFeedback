@@ -3,14 +3,4 @@
   <PropertyGroup>
     <_LastSelectedProfileId>F:\CodingCode\Kingfar.BioFeedback\Kingfar.BioFeedback\Kingfar.BioFeedback.Mvvm\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
-  <ItemGroup>
-    <Compile Update="Controls\ConfirmDialog.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Controls\ConfirmDialog.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
 </Project>

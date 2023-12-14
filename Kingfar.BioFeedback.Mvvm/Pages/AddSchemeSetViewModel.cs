@@ -1,11 +1,7 @@
 ﻿using ImTools;
-using Kingfar.BioFeedback.Mvvm.Dto;
 using Kingfar.BioFeedback.Shared.Abstractions.Common;
-using System;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace Kingfar.BioFeedback.Mvvm.Pages
 {
@@ -25,9 +21,6 @@ namespace Kingfar.BioFeedback.Mvvm.Pages
 
         [ObservableProperty]
         private object _dialogContent = default!;
-
-        [ObservableProperty]
-        private ObservableCollection<UserDto> patients = default!;
 
         [ObservableProperty]
         private Visibility _nextBtnVisibility = Visibility.Visible;

@@ -1,9 +1,4 @@
-﻿using Kingfar.BioFeedback.Services;
-using Microsoft.Extensions.Configuration;
-using Prism.Commands;
-using System;
-
-namespace Kingfar.BioFeedback.Mvvm
+﻿namespace Kingfar.BioFeedback.Mvvm
 {
     public partial class LoginViewModel : DialogViewModel
     {

@@ -19,7 +19,7 @@ namespace Kingfar.BioFeedback.Patient.Client
 
             try
             {
-                var shell = container.Resolve<MainWindow>();
+                var shell = container.Resolve<MainView>();
                 if (shell is Window view)
                 {
                     ViewModelLocator.SetAutoWireViewModel(view, true);

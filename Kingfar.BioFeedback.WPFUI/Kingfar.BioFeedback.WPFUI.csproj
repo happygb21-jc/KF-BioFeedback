@@ -10,6 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controls\KeyDownTrigger.cs" />
+    <Compile Remove="Controls\StackPanelExtensions.cs" />
     <Compile Remove="Views\Pages\Scheme\AddSchemeDialogView.xaml.cs" />
   </ItemGroup>
 

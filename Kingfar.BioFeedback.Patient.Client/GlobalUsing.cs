@@ -8,3 +8,8 @@ global using CommunityToolkit.Mvvm.ComponentModel;
 global using CommunityToolkit.Mvvm.Input;
 global using Prism.Common;
 global using Prism.Services.Dialogs;
+global using Kingfar.BioFeedback.WPFCommon.Controls;
+global using Kingfar.BioFeedback.WPFCommon.Services;
+global using Kingfar.BioFeedback.WPFCommon.ViewModels;
+global using Prism.Commands;
+global using Wpf.Ui;
