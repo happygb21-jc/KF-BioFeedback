@@ -1,0 +1,171 @@
+﻿<ui:FluentWindow
+    x:Class="Kingfar.BioFeedback.WPFUI.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:prism="http://prismlibrary.com/"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    xmlns:tray="http://schemas.lepo.co/wpfui/2022/xaml/tray"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="1450"
+    Height="802"
+    MinWidth="1000"
+    d:DesignHeight="650"
+    d:DesignWidth="900"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+    ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    ExtendsContentIntoTitleBar="True"
+    SizeChanged="MainView_OnSizeChanged"
+    WindowBackdropType="Mica"
+    WindowCornerPreference="Default"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <ui:FluentWindow.Resources>
+        <ResourceDictionary>
+            <StackPanel x:Key="ChangePasswordDialog" MinWidth="300">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="原密码：" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <ui:PasswordBox  Grid.Row="0" Grid.Column="1"  Margin="8" Password="{Binding OldPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    </ui:PasswordBox>
+                    <TextBlock Text="新密码：" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <ui:PasswordBox  Grid.Row="1" Grid.Column="1"  Margin="8" Password="{Binding NewPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    </ui:PasswordBox>
+                    <TextBlock Text="确认密码：" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <ui:PasswordBox  Grid.Row="2" Grid.Column="1"  Margin="8" Password="{Binding CheckPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    </ui:PasswordBox>
+                </Grid>
+            </StackPanel>
+        </ResourceDictionary>
+    </ui:FluentWindow.Resources>
+    <Grid>
+        <Grid x:Name="RootMainGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <ui:NavigationView
+                Grid.RowSpan="2"
+                Grid.Row="0"
+                x:Name="RootNavigation"
+                Padding="18,0,22,0"
+                BreadcrumbBar="{Binding ElementName=BreadcrumbBar}"
+                EnableDebugMessages="True"
+                FrameMargin="0"
+                IsBackButtonVisible="Visible"
+                IsPaneToggleVisible="True"
+                FooterMenuItemsSource="{Binding NavigationFooter, Mode=OneWay}"
+                MenuItems="{Binding NavigationItems, Mode=OneWay}"
+                OpenPaneLength="220"
+                PaneClosed="NavigationView_OnPaneClosed"
+                PaneDisplayMode="Left"
+                PaneOpened="NavigationView_OnPaneOpened"
+                SelectionChanged="OnNavigationSelectionChanged"
+                Loaded="RootNavigation_Loaded"
+                TitleBar="{Binding ElementName=TitleBar, Mode=OneWay}">
+                <ui:NavigationView.PaneHeader>
+                    <Grid x:Name="NavPaneHeader">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <ui:ImageIcon Source="pack://application:,,,/Assets/wpfui.png" Width="100" />
+                        <ui:TextBlock Grid.Row="1" FontTypography="Subtitle"  Text="{Binding ApplicationTitle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Grid>
+                </ui:NavigationView.PaneHeader>
+                <ui:NavigationView.Header>
+                    <StackPanel Margin="22,12,22,20">
+                        <ui:BreadcrumbBar x:Name="BreadcrumbBar" />
+                    </StackPanel>
+                </ui:NavigationView.Header>
+                <ui:NavigationView.AutoSuggestBox>
+                    <ui:AutoSuggestBox x:Name="AutoSuggestBox" PlaceholderText="Search">
+                        <ui:AutoSuggestBox.Icon>
+                            <ui:IconSourceElement>
+                                <ui:SymbolIconSource Symbol="Search24" />
+                            </ui:IconSourceElement>
+                        </ui:AutoSuggestBox.Icon>
+                    </ui:AutoSuggestBox>
+                </ui:NavigationView.AutoSuggestBox>
+            </ui:NavigationView>
+            <!--<ui:NavigationView.ContentOverlay>
+        <Grid>
+            <ui:SnackbarPresenter x:Name="RootSnackbarPresenter" />
+        </Grid>
+    </ui:NavigationView.ContentOverlay>-->
+
+            <ui:TitleBar
+                x:Name="TitleBar"
+                Grid.Row="0"
+                Title="{Binding ApplicationTitle}"
+                FontSize="16"
+                FontWeight="Bold"
+                CloseClicked="TitleBar_CloseClicked"
+                CloseWindowByDoubleClickOnIcon="True">
+                <ui:TitleBar.Icon>
+                    <ui:ImageIcon Source="pack://application:,,,/Assets/wpfui.png" Height="18" />
+                </ui:TitleBar.Icon>
+                <ui:TitleBar.Header>
+                    <ui:DropDownButton Content="{Binding LoginUser.Name}"  BorderBrush="Transparent" FontSize="18">
+                        <ui:DropDownButton.Icon>
+                            <ui:SymbolIcon Symbol="PersonCircle32" FontSize="24" />
+                        </ui:DropDownButton.Icon>
+                        <ui:DropDownButton.Flyout>
+                            <ContextMenu>
+                                <MenuItem Header="修改密码" Command="{Binding ChangePasswordCommand}" />
+                                <MenuItem Header="切换账号" Click="Logout_MenuItem_Click" />
+                                <MenuItem Header="退出系统" Click="MenuItem_Click" />
+                            </ContextMenu>
+                        </ui:DropDownButton.Flyout>
+                    </ui:DropDownButton>
+                </ui:TitleBar.Header>
+            </ui:TitleBar>
+            <ContentPresenter x:Name="RootContentDialog" Grid.Row="1" />
+            <ui:SnackbarPresenter x:Name="RootSnackbarPresenter" Grid.Row="1" />
+            <tray:NotifyIcon
+                x:Name="RootNotifyIcon"
+                FocusOnLeftClick="True"
+                Icon="pack://application:,,,/Assets/wpfui.png"
+                MenuOnRightClick="True"
+                TooltipText="{Binding ApplicationTitle, Mode=OneWay}">
+                <tray:NotifyIcon.Menu>
+                    <!--<ContextMenu ItemsSource="{Binding TrayMenuItems, Mode=OneWay}" />-->
+                    <ContextMenu>
+                        <MenuItem Header="退出" Click="MenuItem_Click" />
+                    </ContextMenu>
+                </tray:NotifyIcon.Menu>
+            </tray:NotifyIcon>
+        </Grid>
+        <Grid x:Name="RootWelcomeGrid" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Image
+                    MaxWidth="180"
+                    RenderOptions.BitmapScalingMode="HighQuality"
+                    Source="pack://application:,,,/Assets/geo_icons.png" />
+            </Grid>
+            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                <ui:ProgressRing IsIndeterminate="True" />
+                <TextBlock
+                    Margin="0,12,0,0"
+                    FontSize="16"
+                    FontWeight="Medium"
+                    Text="BioNeuro"
+                    TextAlignment="Center"
+                    TextWrapping="Wrap" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</ui:FluentWindow>

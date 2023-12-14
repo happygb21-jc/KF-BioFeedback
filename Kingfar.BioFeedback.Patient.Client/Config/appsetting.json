@@ -1,0 +1,25 @@
+{
+  "App": {
+    "SystemInfo": {
+      "Title": "多参数生物反馈系统",
+      "Description": "Multiparametric BioNeuro Feedback System",
+      "Version": "0.0.1",
+      "SystemUserVersion": "Multi"
+    }
+  },
+  "DbConnection": {
+    "ConnectionConfigs": [
+      {
+        "ConfigId": "main-db-config", // 默认库标识-禁止修改
+        "DbType": "Sqlite", // MySql、SqlServer、Sqlite、Oracle、PostgreSQL、Dm、Kdbndp、Oscar、MySqlConnector、Access、OpenGauss、QuestDB、HG、ClickHouse、GBase、Odbc、Custom
+        "DbFilePath": "BioSystem_DB.db", // 库连接字符串
+        "Version": "0.0.1",
+        "DbSettings": {
+          "EnableInitDb": true, // 启用库初始化
+          "EnableInitSeed": true, // 启用初始化种子数据
+          "EnableUnderLine": false // 启用驼峰转下划线
+        }
+      }
+    ]
+  }
+}

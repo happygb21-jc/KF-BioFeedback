@@ -1,0 +1,217 @@
+﻿<Page x:Class="Kingfar.BioFeedback.WPFUI.Views.Pages.SchemeView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:controls="clr-namespace:Kingfar.BioFeedback.WPFUI.Controls"
+        xmlns:models="clr-namespace:Kingfar.BioFeedback.Mvvm;assembly=Kingfar.BioFeedback.Mvvm"
+        xmlns:converters="clr-namespace:Kingfar.BioFeedback.WPFUI.Converters"
+        Title="SchemeView"
+        xmlns:prism="http://prismlibrary.com/"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+      ScrollViewer.VerticalScrollBarVisibility="Disabled"
+        mc:Ignorable="d"
+        ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+        ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+        Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+       ui:NavigationView.HeaderContent="训练管理"
+       d:DesignHeight="450" d:DesignWidth="800">
+    <Page.Resources>
+        <ResourceDictionary>
+            <converters:EnumToDescriptionConverter x:Key="EnumToDescriptionConverter" />
+            <converters:RandomColorConverter x:Key="RandomColorConverter" />
+            <StackPanel x:Key="AddSchemeDialog" MinWidth="300">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="名称：" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <ui:TextBox  Grid.Row="0" Grid.Column="1"  Margin="8" Text="{Binding SchemeName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    </ui:TextBox>
+                    <TextBlock Text="训练类型：" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <WrapPanel Grid.Row="1" Grid.Column="1">
+                        <ListView SelectionMode="Single" ItemsSource="{Binding AddTrainTypes}">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem" BasedOn="{StaticResource SearchMultipleListViewItemStyle}">
+                                    <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel  Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                            <ListView.ItemTemplate>
+                                <DataTemplate DataType="{x:Type models:TrainTypeOption}">
+                                    <TextBlock Text="{Binding Name}"></TextBlock>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </WrapPanel>
+                    <TextBlock Text="应用类型：" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <WrapPanel Grid.Row="2" Grid.Column="1">
+                        <ListView SelectionMode="Multiple" ItemsSource="{Binding AddTrainApplicationTypes}">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem" BasedOn="{StaticResource SearchMultipleListViewItemStyle}">
+                                    <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel  Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                            <ListView.ItemTemplate>
+                                <DataTemplate DataType="{x:Type models:TrainTypeOption}">
+                                    <TextBlock Text="{Binding Name}" ></TextBlock>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </WrapPanel>
+                </Grid>
+            </StackPanel>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid x:Name="RootGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="148" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="48" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <ui:TextBox PlaceholderText="训练名称" Text="{Binding SearchText}" />
+                <Separator Width="8" BorderBrush="Transparent" />
+                <ui:Button Command="{Binding SearchCommand}" HorizontalAlignment="Stretch" VerticalAlignment="Center"  Appearance="Primary"
+                           Content="查询">
+                    <ui:Button.Icon>
+                        <ui:SymbolIcon Symbol="Search12"></ui:SymbolIcon>
+                    </ui:Button.Icon>
+                </ui:Button>
+                <Separator Width="8" BorderBrush="Transparent" />
+                <ui:Button Command="{Binding ClearCommand}" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                    <ui:Button.Icon>
+                        <ui:SymbolIcon Symbol="ArrowClockwise32"></ui:SymbolIcon>
+                    </ui:Button.Icon>
+                </ui:Button>
+            </StackPanel>
+            <Separator Height="8" BorderBrush="Transparent" />
+            <WrapPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <TextBlock Text="类型：" VerticalAlignment="Center"></TextBlock>
+                <ListView SelectionMode="Multiple" ItemsSource="{Binding TrainTypes}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem" BasedOn="{StaticResource SearchMultipleListViewItemStyle}">
+                            <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate DataType="{x:Type models:TrainTypeOption}">
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </WrapPanel>
+            <Separator Height="8" BorderBrush="Transparent" />
+            <WrapPanel Grid.Row="2" Orientation="Horizontal">
+                <TextBlock Text="应用：" VerticalAlignment="Center"></TextBlock>
+                <ListView SelectionMode="Multiple" ItemsSource="{Binding TrainApplicationTypes}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem" BasedOn="{StaticResource SearchMultipleListViewItemStyle}">
+                            <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate DataType="{x:Type models:TrainTypeOption}">
+                            <TextBlock Text="{Binding Name}" ></TextBlock>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </WrapPanel>
+            <Separator Height="8" BorderBrush="Transparent" />
+            <WrapPanel Grid.Row="3" Orientation="Horizontal" FlowDirection="RightToLeft">
+                <ui:Button Appearance="Primary" Content="测试添加数据" FlowDirection="LeftToRight" Command="{Binding TestAddTrainCommand}">
+                    <ui:Button.Icon>
+                        <ui:SymbolIcon Symbol="Add24"></ui:SymbolIcon>
+                    </ui:Button.Icon>
+                </ui:Button>
+                <Separator Width="8" BorderBrush="Transparent" />
+                <ui:Button Appearance="Primary" Content="新建训练" FlowDirection="LeftToRight" Command="{Binding AddSchemeCommand}">
+                    <ui:Button.Icon>
+                        <ui:SymbolIcon Symbol="Add24"></ui:SymbolIcon>
+                    </ui:Button.Icon>
+                </ui:Button>
+            </WrapPanel>
+        </StackPanel>
+        <ui:DataGrid
+             Margin="0,8"
+             x:Name="TrainDataGrid"
+             Grid.Row="1"
+             ItemsSource="{Binding Source,Mode=TwoWay}">
+            <ui:DataGrid.Columns>
+                <DataGridTextColumn Width="2*"  Binding="{Binding Name}" Header="训练名称" ElementStyle="{StaticResource CenterAlignmentStyle}" />
+                <DataGridTextColumn Width="1*"  Binding="{Binding Type, Converter={StaticResource EnumToDescriptionConverter}}" Header="训练类型"  ElementStyle="{StaticResource CenterAlignmentStyle}" />
+                <DataGridTemplateColumn Header="应用类型"  Width="2*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                                <ItemsControl ItemsSource="{Binding ApplicationTypes}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border BorderThickness="1"  CornerRadius="4" Margin="4" Background="{Binding Converter={StaticResource RandomColorConverter}}">
+                                                <TextBlock Text="{Binding Converter={StaticResource EnumToDescriptionConverter}}" Margin="5" Foreground="White">
+                                                </TextBlock>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </ScrollViewer>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Width="*"  Binding="{Binding CreationTime, StringFormat=\{0:yyyy-MM-dd\}}" Header="创建时间"  ElementStyle="{StaticResource CenterAlignmentStyle}" />
+                <DataGridTemplateColumn Header="操作"  Width="2*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="8">
+                                <ui:Button Content="编辑" Appearance="Info" Command="{Binding DataContext.AddSchemeCommand,RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding Id}" Margin="4">
+                                </ui:Button>
+                                <ui:Button Content="编辑参数" Appearance="Info" Command="{Binding DataContext.AddCommand,RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding Id}" Margin="4">
+                                </ui:Button>
+                                <ui:Button Content="删除" Appearance="Danger" Command="{Binding DataContext.DeleteCommand,RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}" Margin="4"></ui:Button>
+                            </WrapPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </ui:DataGrid.Columns>
+        </ui:DataGrid>
+        <controls:Pagination
+         Grid.Row="2"
+         Count="{Binding TotalCount, Mode=TwoWay}"
+         CountPerPage="{Binding CountPerPage, Mode=TwoWay}"
+         Current="{Binding Current, Mode=TwoWay}" HorizontalAlignment="Right"
+         IsLite="False" />
+    </Grid>
+</Page>

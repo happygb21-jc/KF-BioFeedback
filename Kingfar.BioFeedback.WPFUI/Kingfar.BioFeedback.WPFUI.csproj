@@ -1,0 +1,124 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+	<ApplicationIcon>wpfui.ico</ApplicationIcon>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\Pages\Scheme\AddSchemeDialogView.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\Logo.png" />
+    <None Remove="Assets\Logo1.png" />
+    <None Remove="Assets\u1_state0.png" />
+    <None Remove="Config\Database.json" />
+    <None Remove="Assets\fluent-ui-microsoft.png" />
+    <None Remove="Assets\geo_icons.png" />
+    <None Remove="Assets\halo_infinite.jpg" />
+    <None Remove="Assets\master_chief.jpg" />
+    <None Remove="Assets\microsoft-icon-store.png" />
+    <None Remove="Assets\microsoft-shell-accessibility.ico" />
+    <None Remove="Assets\microsoft-shell-colors.ico" />
+    <None Remove="Assets\microsoft-shell-desktop.ico" />
+    <None Remove="Assets\microsoft-shell-gallery.ico" />
+    <None Remove="Assets\microsoft-shell-monitor.ico" />
+    <None Remove="Assets\microsoft-shell-settings.ico" />
+    <None Remove="Assets\microsoft-shell-workspace.ico" />
+    <None Remove="Assets\the_witcher_wallpaper.jpg" />
+    <None Remove="Assets\wpfui.png" />
+    <None Remove="Assets\wpfui_full.png" />
+    <None Remove="wpfui.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="Views\Pages\Scheme\AddSchemeDialogView.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\Logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Logo1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\u1_state0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+    <PackageReference Include="FastExpressionCompiler.LightExpression" Version="3.3.3" />
+    <PackageReference Include="gong-wpf-dragdrop" Version="3.2.1" />
+    <PackageReference Include="MessagePack" Version="2.4.59" />
+    <PackageReference Include="Microsoft.VisualStudio.Threading" Version="17.4.27" />
+    <PackageReference Include="Nerdbank.Streams" Version="2.9.112" />
+    <PackageReference Include="NLog.Extensions.Logging" Version="5.3.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Kingfar.BioFeedback.DataAccess\Kingfar.BioFeedback.DataAccess.csproj" />
+    <ProjectReference Include="..\Kingfar.BioFeedback.Mvvm\Kingfar.BioFeedback.Mvvm.csproj" />
+    <ProjectReference Include="..\Kingfar.BioFeedback.Services\Kingfar.BioFeedback.Services.csproj" />
+    <ProjectReference Include="..\Kingfar.BioFeedback.Shared\Kingfar.BioFeedback.Shared.csproj" />
+    <ProjectReference Include="..\Kingfar.BioFeedback.WebHost\Kingfar.BioFeedback.WebHost.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\fluent-ui-microsoft.png" />
+    <Resource Include="Assets\geo_icons.png" />
+    <Resource Include="Assets\halo_infinite.jpg" />
+    <Resource Include="Assets\master_chief.jpg" />
+    <Resource Include="Assets\microsoft-icon-store.png" />
+    <Resource Include="Assets\microsoft-shell-accessibility.ico" />
+    <Resource Include="Assets\microsoft-shell-colors.ico" />
+    <Resource Include="Assets\microsoft-shell-desktop.ico" />
+    <Resource Include="Assets\microsoft-shell-gallery.ico" />
+    <Resource Include="Assets\microsoft-shell-monitor.ico" />
+    <Resource Include="Assets\microsoft-shell-settings.ico" />
+    <Resource Include="Assets\microsoft-shell-workspace.ico" />
+    <Resource Include="Assets\the_witcher_wallpaper.jpg" />
+    <Resource Include="Assets\wpfui.png" />
+    <Resource Include="Assets\wpfui_full.png" />
+    <Content Include="wpfui.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Config\appsetting.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="nlog.Config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ErgoLAB.Expert.Client">
+      <HintPath>..\Kingfar-App\App\Expert\ErgoLAB.Expert.RpcInteraction\bin\Debug\net7.0\ErgoLAB.Expert.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Kingfar.Rpc">
+      <HintPath>..\Kingfar-App\App\Expert\ErgoLAB.Expert.RpcInteraction\bin\Debug\net7.0\Kingfar.Rpc.dll</HintPath>
+    </Reference>
+    <Reference Include="Kingfar.Rpc.Serializer.MessagePack">
+      <HintPath>..\Kingfar-App\App\Expert\ErgoLAB.Expert.RpcInteraction\bin\Debug\net7.0\Kingfar.Rpc.Serializer.MessagePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Kingfar.Utils.NETStandard">
+      <HintPath>..\Kingfar-App\App\Expert\ErgoLAB.Expert.RpcInteraction\bin\Debug\net7.0\Kingfar.Utils.NETStandard.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\Pages\SchemeSet\SchemeSetTemplateView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,24 @@
+﻿<prism:PrismApplication
+    x:Class="Kingfar.BioFeedback.WPFUI.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Kingfar.BioFeedback.WPFUI"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    xmlns:tray="http://schemas.lepo.co/wpfui/2022/xaml/tray"
+    xmlns:prism="http://prismlibrary.com/">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ui:ThemesDictionary Theme="Light" />
+                <ui:ControlsDictionary />
+                <!--<ResourceDictionary Source="pack://application:,,,/BioFeedback;component/Styles/PrismDialogToWpfUIStyle.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/BioFeedback;component/Styles/Pagination.xaml" />-->
+                <!--<ResourceDictionary Source="pack://application:,,,/Kingfar.BioFeedback.WPFUI;component/Controls/TopNavigationViewNonContentTemplate.xaml" />-->
+                <ResourceDictionary Source="pack://application:,,,/Kingfar.BioFeedback.WPFUI;component/Themes/PlaceholderComboBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Kingfar.BioFeedback.WPFUI;component/Themes/SearchMultipleListViewItem.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Kingfar.BioFeedback.WPFUI;component/Themes/Pagination.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Kingfar.BioFeedback.WPFUI;component/Themes/CommonStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</prism:PrismApplication>

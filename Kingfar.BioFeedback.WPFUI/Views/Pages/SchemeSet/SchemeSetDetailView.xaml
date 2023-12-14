@@ -1,0 +1,140 @@
+﻿<Page x:Class="Kingfar.BioFeedback.WPFUI.Views.Pages.SchemeSetDetailView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:dto="clr-namespace:Kingfar.BioFeedback.Services;assembly=Kingfar.BioFeedback.Services.Abstractions"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      mc:Ignorable="d"
+      ui:NavigationView.HeaderContent="方案详情"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SchemeSetDetails">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" MinWidth="240"></ColumnDefinition>
+            <ColumnDefinition Width="7*" MinWidth="480"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Margin="0,0,10,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Margin="0,0,0,16">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="36"></RowDefinition>
+                    <RowDefinition Height="36"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                    <ColumnDefinition Width="6*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <ui:Button Grid.ColumnSpan="2" MinHeight="48" Appearance="Info" Content="方案信息" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,0,0,16"></ui:Button>
+                <TextBlock Text="方案名称：" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" FontSize="16" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Text="{Binding SchemeSetName}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" ></TextBlock>
+                <TextBlock Text="分类：" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="16"></TextBlock>
+                <TextBlock Text="{Binding SchemeSetType}" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" ></TextBlock>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <ui:Button  Appearance="Info"  Height="48"  Content="{Binding TrainName}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></ui:Button>
+                <GridSplitter Grid.Row="1" Width="0"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                <ListView Grid.Row="1" Margin="0,16"
+                                 ItemsSource="{Binding Experiments, Mode=TwoWay}"
+                                 SelectionMode="Single" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <ListView.ItemTemplate>
+                        <DataTemplate DataType="{x:Type dto:ExperimentDto}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Ellipse Width="10" Height="10" Fill="LightGreen" Canvas.Left="50" Canvas.Top="50" />
+                                <Line Grid.Row="1" X1="0" Y1="0" X2="0" Y2="100" Stroke="Black" StrokeDashArray="2 2"  Height="40" HorizontalAlignment="Center" />
+                                <StackPanel  Grid.RowSpan="2" Grid.Column="1">
+                                    <TextBlock Text="{Binding Name}" />
+                                    <ItemsControl ItemsSource="{Binding Cover}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal" Margin="4">
+                                                    <Ellipse Width="4" Height="4" Fill="Black" Canvas.Left="50" Canvas.Top="50"/>
+                                                    <Separator Width="8" BorderBrush="Transparent" />
+                                                    <TextBlock Grid.RowSpan="2" Grid.Column="1" Text="{Binding Name}"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackPanel Grid.Row="2">
+                    <ui:Button MinHeight="48" Appearance="{Binding StartBtnType}" Content="{Binding StartBtnName}"  Command="{Binding StartOrStopSchemeSetCommand}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Foreground="White"></ui:Button>
+                    <Separator Height="8" BorderBrush="Transparent" />
+                    <ui:Button MinHeight="48" Appearance="Light" Content="返回" Command="{Binding GoBackCommand}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <GridSplitter Width="2"></GridSplitter>
+        <Grid Grid.Column="1" Margin="40,0,8,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <ui:TextBlock
+                            Grid.Row="0"
+                            Margin="0,0,0,10"
+                            FontTypography="Subtitle"
+                            Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+                            Text="训练" />
+            <ListView Grid.Row="1"
+                                 HorizontalAlignment="Left" VerticalAlignment="Top"
+                                 ItemsSource="{Binding Trains, Mode=TwoWay}"
+                                 SelectedIndex="{Binding TrainSelectedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 SelectionMode="Single" ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ui:VirtualizingWrapPanel
+                                        VerticalAlignment="Stretch"
+                                        HorizontalAlignment="Stretch"
+                                        Orientation="Vertical"
+                                        SpacingMode="Uniform"
+                                        StretchItems="False" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate DataType="{x:Type dto:TrainDetialDto}">
+                        <ui:Card Padding="20"
+                                                Grid.Row="0"
+                                                Background="{ui:ThemeResource CardStrokeColorDefaultBrush}"
+                                                BorderBrush="{ui:ThemeResource ControlElevationBorderBrush}">
+                            <StackPanel>
+                                <TextBlock Text="{Binding Name}" FontWeight="Black"></TextBlock>
+                            </StackPanel>
+                        </ui:Card>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ui:TextBlock
+                            Grid.Row="2"
+                            Margin="0,0,0,10"
+                            FontTypography="Subtitle"
+                            Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+                            Text="患者" />
+        </Grid>
+    </Grid>
+</Page>

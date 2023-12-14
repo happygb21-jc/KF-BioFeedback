@@ -1,0 +1,12 @@
+﻿global using System.Collections.Generic;
+global using System.Collections.ObjectModel;
+global using Wpf.Ui;
+global using Wpf.Ui.Controls;
+global using System.Windows;
+global using CommunityToolkit.Mvvm.ComponentModel;
+global using Kingfar.BioFeedback.Services;
+global using Prism.Ioc;
+global using System.Threading.Tasks;
+global using Kingfar.BioFeedback.Mvvm;
+global using Kingfar.BioFeedback.WPFUI.Views.Pages;
+global using Kingfar.BioFeedback.Shared;

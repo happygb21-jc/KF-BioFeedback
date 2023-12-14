@@ -1,0 +1,17 @@
+{
+  // 详细数据库配置见SqlSugar官网（第一个为默认库）
+  "DbConnection": {
+    "ConnectionConfigs": [
+      {
+        "ConfigId": "mainConfig", // 默认库标识-禁止修改
+        "DbType": "Sqlite", // MySql、SqlServer、Sqlite、Oracle、PostgreSQL、Dm、Kdbndp、Oscar、MySqlConnector、Access、OpenGauss、QuestDB、HG、ClickHouse、GBase、Odbc、Custom
+        "DbFilePath": "./BioSystemData.db", // 库连接字符串
+        "Version": "0.0.1",
+        "DbSettings": {
+          "EnableInitDb": true, // 启用库初始化
+          "EnableUnderLine": false // 启用驼峰转下划线
+        }
+      }
+    ]
+  }
+} 

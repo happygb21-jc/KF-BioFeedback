@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Prism.Core" Version="8.1.97" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Kingfar.BioFeedback.DataAccess.Abstractions\Kingfar.BioFeedback.DataAccess.Abstractions.csproj" />
+    <ProjectReference Include="..\Kingfar.BioFeedback.Services.Abstractions\Kingfar.BioFeedback.Services.Abstractions.csproj" />
+    <ProjectReference Include="..\Kingfar.BioFeedback.Shared.Abstractions\Kingfar.BioFeedback.Shared.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

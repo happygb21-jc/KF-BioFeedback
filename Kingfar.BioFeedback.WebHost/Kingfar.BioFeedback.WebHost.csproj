@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Prism.Core" Version="8.1.97" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Kingfar.BioFeedback.DataAccess.Abstractions\Kingfar.BioFeedback.DataAccess.Abstractions.csproj" />
+    <ProjectReference Include="..\Kingfar.BioFeedback.Services.Abstractions\Kingfar.BioFeedback.Services.Abstractions.csproj" />
+    <ProjectReference Include="..\Kingfar.BioFeedback.Shared.Abstractions\Kingfar.BioFeedback.Shared.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,107 @@
+﻿<ui:FluentWindow
+    x:Class="Kingfar.BioFeedback.Patient.Client.LoginView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    xmlns:prism="http://prismlibrary.com/"
+    xmlns:controls="clr-namespace:Kingfar.BioFeedback.Patient.Client.Controls"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    d:DesignHeight="650"
+    d:DesignWidth="900"
+    Width="1450"
+    Height="800"
+    MinWidth="1000"
+    ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+    ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    ExtendsContentIntoTitleBar="True"
+    WindowBackdropType="Mica"
+    WindowCornerPreference="Default"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+
+    <prism:Dialog.WindowStyle>
+        <Style TargetType="Window">
+            <Setter Property="Width" Value="1450" />
+            <Setter Property="Height" Value="800" />
+            <Setter Property="SizeToContent" Value="WidthAndHeight" />
+        </Style>
+    </prism:Dialog.WindowStyle>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Grid.ColumnSpan="3">
+            <Grid.Background>
+                <SolidColorBrush Color="#1891FF" />
+            </Grid.Background>
+            <ui:TitleBar
+                x:Name="TitleBar"
+                Grid.ColumnSpan="2"
+                ShowMaximize="False" ShowMinimize="False" CloseClicked="TitleBar_CloseClicked">
+            </ui:TitleBar>
+        </Grid>
+        <Grid Grid.Row="0" Grid.ColumnSpan="3">
+            <Grid.Background>
+                <ImageBrush ImageSource="pack://application:,,,/Assets/u1_state0.png" />
+            </Grid.Background>
+        </Grid>
+        <Grid Grid.Column="1" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Border Height="420"
+                Grid.Row="1"
+                BorderBrush="Black"
+                Background="White"
+                CornerRadius="8">
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" Direction="300" ShadowDepth="5" Opacity="0.5" BlurRadius="10" />
+                </Border.Effect>
+                <Grid Margin="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image Width="80" Margin="0,24,0,18" Source="pack://application:,,,/Assets/Logo1.png"></Image>
+                        <ui:TextBlock FontTypography="Title"  Text="{Binding ApplicationTitle}" FontWeight="Bold"  HorizontalAlignment="Center" ></ui:TextBlock>
+                        <ui:TextBlock FontTypography="BodyStrong" Text="{Binding Description}"  Margin="0,12,0,0" HorizontalAlignment="Center" ></ui:TextBlock>
+                    </StackPanel>
+                    <StackPanel
+                        KeyboardNavigation.TabNavigation="Cycle"
+                        Grid.Row="1"
+                        Margin="40,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center">
+                        <ui:TextBox PlaceholderText="身份证号/账号" DockPanel.Dock="Top"  TabIndex="1" FontSize="18" Height="40"
+                            Text="{Binding UserName,UpdateSourceTrigger=PropertyChanged}">
+                            <ui:TextBox.Icon>
+                                <ui:SymbolIcon Symbol="PersonCircle24" FontSize="18"></ui:SymbolIcon>
+                            </ui:TextBox.Icon>
+                        </ui:TextBox>
+
+                        <ui:Button TabIndex="3" Appearance="Primary"
+                            Margin="0,24" FontSize="18"
+                            HorizontalAlignment="Stretch"
+                            Command="{Binding ExecuteCommand}"
+                            CommandParameter="LoginUser"
+                            Content="登       录"
+                            Height="42"
+                            IsEnabled="{Binding IsLoginEnabled}" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+        <ui:SnackbarPresenter Width="480" x:Name="ClientLoginSnackbarPresenter" Grid.ColumnSpan="3" Grid.Row="1" />
+    </Grid>
+</ui:FluentWindow>

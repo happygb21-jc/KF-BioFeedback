@@ -1,0 +1,204 @@
+﻿<UserControl x:Class="Kingfar.BioFeedback.WPFUI.Views.Pages.AddSchemeDialogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:vm="clr-namespace:Kingfar.BioFeedback.Mvvm;assembly=Kingfar.BioFeedback.Mvvm"
+             xmlns:models="clr-namespace:Kingfar.BioFeedback.Mvvm;assembly=Kingfar.BioFeedback.Mvvm"
+             xmlns:local="clr-namespace:Kingfar.BioFeedback.WPFUI.Views.Pages"
+             xmlns:controls="clr-namespace:Kingfar.BioFeedback.WPFUI.Controls"
+             mc:Ignorable="d"
+             MinHeight="700"
+             MinWidth="800"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <DockPanel  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="8">
+            <TabControl Margin="0,8,0,0" SelectedIndex="{Binding TabSelectIndex}" DockPanel.Dock="Top" Height="640">
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <ui:SymbolIcon Margin="0,0,6,0" Symbol="XboxConsole24" />
+                            <TextBlock Text="基础信息" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="训练名称：" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <ui:TextBox Grid.Row="0" Grid.Column="1"  Margin="8"></ui:TextBox>
+                            <TextBlock Text="训练类型：" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <StackPanel Orientation="Horizontal"  Grid.Row="1" Grid.Column="1" Margin="8">
+                                <RadioButton Content="个体" GroupName="schemeType" />
+                                <RadioButton Content="团队" GroupName="schemeType" />
+                            </StackPanel>
+                            <TextBlock Text="选择患者：" Margin="8" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <ListView
+                   Grid.Row="3" Grid.Column="1"
+                   MaxWidth="780"
+                   ItemsSource="{Binding Patients, Mode=TwoWay}"
+                   SelectionMode="Single">
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <ui:VirtualizingWrapPanel
+                            VerticalAlignment="Stretch"
+                            HorizontalAlignment="Stretch"
+                        Orientation="Vertical"
+                        SpacingMode="Uniform"
+                        StretchItems="False" />
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type vm:Patient}">
+                                        <Grid Margin="8,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Ellipse
+                           x:Name="Ellipse"
+                           Grid.RowSpan="2"
+                           Width="32"
+                           Height="32"
+                           Margin="6"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Fill="{ui:ThemeResource ControlStrongStrokeColorDefaultBrush}" />
+                                            <TextBlock
+                           Grid.Row="0"
+                           Grid.Column="1"
+                           Margin="12,6,0,0"
+                           FontWeight="Bold"
+                           Text="{Binding Id, Mode=OneWay}" />
+                                            <TextBlock
+                           Grid.Row="1"
+                           Grid.Column="1"
+                           Margin="12,0,0,6"
+                           Foreground="{ui:ThemeResource TextFillColorSecondaryBrush}"
+                           Text="{Binding Name, Mode=OneWay}" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Grid>
+                    </StackPanel>
+                </TabItem>
+                <TabItem IsSelected="True">
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <ui:SymbolIcon Margin="0,0,6,0" Symbol="StoreMicrosoft16" />
+                            <TextBlock Text="选择方案" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Margin="0,8,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <Grid Grid.Row="0" Margin="0,0,4,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                        <ui:TextBox PlaceholderText="患者名称/病历号"  MinWidth="150" Text="{Binding SearchText}" />
+                                        <Separator Width="8" BorderBrush="Transparent" />
+                                        <ui:TextBox PlaceholderText="训练/方案名称"  MinWidth="150" Text="{Binding SearchText}" />
+                                        <Separator Width="8" BorderBrush="Transparent" />
+                                        <controls:PlaceholderComboBox PlaceholderText="训练状态"  MinWidth="150"
+                            HorizontalAlignment="Left">
+                                            <ComboBoxItem Content="已完成" />
+                                            <ComboBoxItem Content="未完成" />
+                                        </controls:PlaceholderComboBox>
+                                        <Separator Width="8" BorderBrush="Transparent" />
+                                        <ui:Button
+                            Command="{Binding SearchCmd}"
+                            Margin="4,0,0,0"
+                            HorizontalAlignment="Stretch"
+                            Appearance="Primary"
+                            FontSize="16">
+                                            <ui:Button.Icon>
+                                                <ui:SymbolIcon Symbol="Search12"></ui:SymbolIcon>
+                                            </ui:Button.Icon>
+                                        </ui:Button>
+                                        <ui:Button
+                                                Command="{Binding SearchCmd}"
+                                                Margin="4,0,0,0"
+                                                HorizontalAlignment="Stretch"
+                                                FontSize="16">
+                                            <ui:Button.Icon>
+                                                <ui:SymbolIcon Symbol="ArrowClockwise20"></ui:SymbolIcon>
+                                            </ui:Button.Icon>
+                                        </ui:Button>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,10,0,0">
+                                        <TextBlock Text="类型："  Margin="10,12"></TextBlock>
+                                        <ListView SelectionMode="Multiple" ItemsSource="{Binding TrainTypes}">
+                                            <ListView.ItemContainerStyle>
+                                                <Style TargetType="ListViewItem" BasedOn="{StaticResource MultipleListViewItemStyle}" />
+                                            </ListView.ItemContainerStyle>
+                                            <ListView.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel Orientation="Horizontal" />
+                                                </ItemsPanelTemplate>
+                                            </ListView.ItemsPanel>
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate DataType="{x:Type models:TrainTypeOption}">
+                                                    <TextBlock Text="{Binding Name}" Margin="0,4"></TextBlock>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0">
+                                        <TextBlock Text="应用："  Margin="10,12"></TextBlock>
+                                        <ListView SelectionMode="Multiple" ItemsSource="{Binding TrainAppliactionTypes}">
+                                            <ListView.ItemContainerStyle>
+                                                <Style TargetType="ListViewItem" BasedOn="{StaticResource MultipleListViewItemStyle}" />
+                                            </ListView.ItemContainerStyle>
+                                            <ListView.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel Orientation="Horizontal" />
+                                                </ItemsPanelTemplate>
+                                            </ListView.ItemsPanel>
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate DataType="{x:Type models:TrainTypeOption}">
+                                                    <TextBlock Text="{Binding Name}" Margin="0,4"></TextBlock>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+            <StackPanel  DockPanel.Dock="Bottom" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
+                <ui:Button Content="取 消" Appearance="Transparent" Width="80" Margin="10"></ui:Button>
+                <ui:Button Content="下一步" Appearance="Light" Width="80" Margin="10" Visibility="{Binding NextBtnVisibility}" Command="{Binding NextBtnClickedCommand}"></ui:Button>
+                <ui:Button Content="上一步" Appearance="Light" Width="80" Margin="10" Visibility="{Binding BackBtnVisibility}" Command="{Binding BackBtnClickedCommand}"></ui:Button>
+                <ui:Button Content="保 存" Appearance="Primary" Width="80" Margin="10" Visibility="{Binding BackBtnVisibility}"></ui:Button>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</UserControl>

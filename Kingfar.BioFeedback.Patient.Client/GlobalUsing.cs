@@ -1,0 +1,10 @@
+﻿global using Wpf.Ui.Controls;
+global using Kingfar.BioFeedback.Shared.Abstractions.Common;
+global using Prism.DryIoc;
+global using Prism.Ioc;
+global using Kingfar.BioFeedback.Shared;
+global using System.Windows;
+global using CommunityToolkit.Mvvm.ComponentModel;
+global using CommunityToolkit.Mvvm.Input;
+global using Prism.Common;
+global using Prism.Services.Dialogs;
